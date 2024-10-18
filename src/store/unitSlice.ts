@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CombatUnit } from "../models/combatUnit";
 import { UnitService } from "../services/unitService";
 
@@ -14,33 +14,51 @@ const initialState: UnitState = {
   error: null,
 };
 
-export const fetchUnits = createAsyncThunk("units/fetchUnits", async () => {
-  const unitService = new UnitService();
-  await unitService.loadUnits();
-  return unitService.getUnits();
-});
+const unitService = new UnitService();
+
+export const loadUnits = () => (dispatch: any) => {
+  dispatch(loadUnitsPending());
+  try {
+    unitService.loadUnits();
+    const units = unitService.getUnits();
+    dispatch(loadUnitsFulfilled(units));
+  } catch (error: any) {
+    dispatch(loadUnitsRejected(error.message));
+  }
+};
+
+export const addUnit = (unit: CombatUnit) => (dispatch: any) => {
+  unitService.addUnit(unit);
+  const units = unitService.getUnits();
+  dispatch(addUnitFulfilled(units));
+};
 
 const unitSlice = createSlice({
   name: "units",
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchUnits.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(
-        fetchUnits.fulfilled,
-        (state, action: PayloadAction<CombatUnit[]>) => {
-          state.status = "succeeded";
-          state.units = action.payload;
-        }
-      )
-      .addCase(fetchUnits.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message || "Failed to fetch units";
-      });
+  reducers: {
+    loadUnitsPending: (state) => {
+      state.status = "loading";
+    },
+    loadUnitsFulfilled: (state, action: PayloadAction<CombatUnit[]>) => {
+      state.status = "succeeded";
+      state.units = action.payload;
+    },
+    loadUnitsRejected: (state, action: PayloadAction<string>) => {
+      state.status = "failed";
+      state.error = action.payload;
+    },
+    addUnitFulfilled: (state, action: PayloadAction<CombatUnit[]>) => {
+      state.units = action.payload;
+    },
   },
 });
+
+export const {
+  loadUnitsPending,
+  loadUnitsFulfilled,
+  loadUnitsRejected,
+  addUnitFulfilled,
+} = unitSlice.actions;
 
 export default unitSlice.reducer;

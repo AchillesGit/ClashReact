@@ -3,7 +3,7 @@ import Button from "../components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store";
 
-import { fetchUnits } from "../store/unitSlice";
+import { loadUnits } from "../store/unitSlice";
 import UnitList from "../components/UnitList";
 import ResourceComponent from "../components/ResourceComponent";
 import PurchaseUnitComponent from "../components/PurchaseUnitComponent";
@@ -13,7 +13,7 @@ const HomePage: React.FC = () => {
   const units = useSelector((state: RootState) => state.units.units);
 
   useEffect(() => {
-    dispatch(fetchUnits());
+    dispatch(loadUnits());
   }, [dispatch]);
 
   return (

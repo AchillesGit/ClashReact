@@ -1,16 +1,23 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../store";
-import { UnitType, UnitCosts } from "../models/combatUnit";
+import { UnitType, CombatUnit } from "../models/combatUnit";
 import { ResourceType } from "../models/resources";
 import { decrementResource } from "../store/resourceSlice";
+import { addUnit } from "../store/unitSlice";
 
 const PurchaseUnitComponent: React.FC = () => {
   const resources = useSelector((state: RootState) => state.resources);
   const dispatch = useDispatch<AppDispatch>();
 
+  const unitCosts = {
+    Infantry: { gold: 100, wood: 50, stone: 30, steel: 20 },
+    Cavalry: { gold: 150, wood: 70, stone: 50, steel: 40 },
+    Archer: { gold: 120, wood: 60, stone: 40, steel: 30 },
+  };
+
   const canAffordUnit = (unitType: UnitType) => {
-    const cost = UnitCosts[unitType];
+    const cost = unitCosts[unitType];
     return (
       resources[ResourceType.Gold] >= cost.gold &&
       resources[ResourceType.Wood] >= cost.wood &&
@@ -21,7 +28,7 @@ const PurchaseUnitComponent: React.FC = () => {
 
   const purchaseUnit = (unitType: UnitType) => {
     if (canAffordUnit(unitType)) {
-      const cost = UnitCosts[unitType];
+      const cost = unitCosts[unitType];
       dispatch(
         decrementResource({ type: ResourceType.Gold, amount: cost.gold })
       );
@@ -34,6 +41,8 @@ const PurchaseUnitComponent: React.FC = () => {
       dispatch(
         decrementResource({ type: ResourceType.Steel, amount: cost.steel })
       );
+      const newUnit = new CombatUnit(unitType, 10, 5, 100, `New ${unitType}`);
+      dispatch(addUnit(newUnit));
       console.log(`Purchased ${unitType}`);
     } else {
       console.log(`Cannot afford ${unitType}`);

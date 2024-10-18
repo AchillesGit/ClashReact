@@ -2,10 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ResourceType, ResourceState } from "../models/resources";
 
 const initialState: ResourceState = {
-  [ResourceType.Gold]: 0,
-  [ResourceType.Wood]: 0,
-  [ResourceType.Stone]: 0,
-  [ResourceType.Steel]: 0,
+  [ResourceType.Gold]: 11111110,
+  [ResourceType.Wood]: 11111110,
+  [ResourceType.Stone]: 11111110,
+  [ResourceType.Steel]: 11111110,
 };
 
 const resourceSlice = createSlice({
