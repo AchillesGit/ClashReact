@@ -5,6 +5,7 @@ import { AppDispatch, RootState } from "../store";
 
 import { fetchUnits } from "../store/unitSlice";
 import UnitList from "../components/UnitList";
+import ResourceComponent from "../components/ResourceComponent";
 
 const HomePage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -21,6 +22,9 @@ const HomePage: React.FC = () => {
       <div>
         <h2>Units</h2>
         <UnitList units={units} />
+      </div>
+      <div>
+        <ResourceComponent />
       </div>
     </div>
   );
