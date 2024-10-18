@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../components/Button";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../store";
-import { increment, decrement } from "../store/exampleSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../store";
+
+import { fetchUnits } from "../store/unitSlice";
+import UnitList from "../components/UnitList";
 
 const HomePage: React.FC = () => {
-  const value = useSelector((state: RootState) => state.example.value);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+  const units = useSelector((state: RootState) => state.units.units);
+
+  useEffect(() => {
+    dispatch(fetchUnits());
+  }, [dispatch]);
+
   return (
     <div>
       <h1>Welcome to My Game</h1>
       <Button text="Start Game" />
       <div>
-        <h1>{value}</h1>
-        <button onClick={() => dispatch(increment())}>Increment</button>
-        <button onClick={() => dispatch(decrement())}>Decrement</button>
+        <h2>Units</h2>
+        <UnitList units={units} />
       </div>
     </div>
   );

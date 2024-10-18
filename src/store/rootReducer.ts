@@ -1,8 +1,8 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import exampleReducer from "./exampleSlice";
+import unitReducer from "./unitSlice";
 
 const rootReducer = combineReducers({
-  example: exampleReducer,
+  units: unitReducer,
 });
 
 export default rootReducer;

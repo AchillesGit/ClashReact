@@ -1,0 +1,58 @@
+[
+  {
+    "unitType": "Infantry",
+    "attack": 10,
+    "defense": 5,
+    "health": 100,
+    "name": "Warrior"
+  },
+  {
+    "unitType": "Cavalry",
+    "attack": 15,
+    "defense": 7,
+    "health": 120,
+    "name": "Knight"
+  },
+  {
+    "unitType": "Archer",
+    "attack": 12,
+    "defense": 3,
+    "health": 80,
+    "name": "Archer"
+  },
+  {
+    "unitType": "Infantry",
+    "attack": 8,
+    "defense": 6,
+    "health": 110,
+    "name": "Footman"
+  },
+  {
+    "unitType": "Cavalry",
+    "attack": 18,
+    "defense": 8,
+    "health": 130,
+    "name": "Lancer"
+  },
+  {
+    "unitType": "Archer",
+    "attack": 14,
+    "defense": 4,
+    "health": 90,
+    "name": "Crossbowman"
+  },
+  {
+    "unitType": "Infantry",
+    "attack": 11,
+    "defense": 5,
+    "health": 105,
+    "name": "Swordsman"
+  },
+  {
+    "unitType": "Cavalry",
+    "attack": 16,
+    "defense": 6,
+    "health": 125,
+    "name": "Dragoon"
+  }
+]
