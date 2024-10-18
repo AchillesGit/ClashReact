@@ -1,59 +1,32 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface ResourceState {
-  gold: number;
-  wood: number;
-  stone: number;
-  steel: number;
-}
+import { ResourceType, ResourceState } from "../models/resources";
 
 const initialState: ResourceState = {
-  gold: 0,
-  wood: 0,
-  stone: 0,
-  steel: 0,
+  [ResourceType.Gold]: 0,
+  [ResourceType.Wood]: 0,
+  [ResourceType.Stone]: 0,
+  [ResourceType.Steel]: 0,
 };
 
 const resourceSlice = createSlice({
   name: "resources",
   initialState,
   reducers: {
-    incrementGold: (state, action: PayloadAction<number>) => {
-      state.gold += action.payload;
+    incrementResource: (
+      state,
+      action: PayloadAction<{ type: ResourceType; amount: number }>
+    ) => {
+      state[action.payload.type] += action.payload.amount;
     },
-    decrementGold: (state, action: PayloadAction<number>) => {
-      state.gold -= action.payload;
-    },
-    incrementWood: (state, action: PayloadAction<number>) => {
-      state.wood += action.payload;
-    },
-    decrementWood: (state, action: PayloadAction<number>) => {
-      state.wood -= action.payload;
-    },
-    incrementStone: (state, action: PayloadAction<number>) => {
-      state.stone += action.payload;
-    },
-    decrementStone: (state, action: PayloadAction<number>) => {
-      state.stone -= action.payload;
-    },
-    incrementSteel: (state, action: PayloadAction<number>) => {
-      state.steel += action.payload;
-    },
-    decrementSteel: (state, action: PayloadAction<number>) => {
-      state.steel -= action.payload;
+    decrementResource: (
+      state,
+      action: PayloadAction<{ type: ResourceType; amount: number }>
+    ) => {
+      state[action.payload.type] -= action.payload.amount;
     },
   },
 });
 
-export const {
-  incrementGold,
-  decrementGold,
-  incrementWood,
-  decrementWood,
-  incrementStone,
-  decrementStone,
-  incrementSteel,
-  decrementSteel,
-} = resourceSlice.actions;
+export const { incrementResource, decrementResource } = resourceSlice.actions;
 
 export default resourceSlice.reducer;

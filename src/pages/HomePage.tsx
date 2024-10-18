@@ -6,6 +6,7 @@ import { AppDispatch, RootState } from "../store";
 import { fetchUnits } from "../store/unitSlice";
 import UnitList from "../components/UnitList";
 import ResourceComponent from "../components/ResourceComponent";
+import PurchaseUnitComponent from "../components/PurchaseUnitComponent";
 
 const HomePage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -25,6 +26,9 @@ const HomePage: React.FC = () => {
       </div>
       <div>
         <ResourceComponent />
+      </div>
+      <div>
+        <PurchaseUnitComponent />
       </div>
     </div>
   );

@@ -5,6 +5,19 @@ export enum UnitType {
   Archer = "Archer",
 }
 
+interface UnitCost {
+  gold: number;
+  wood: number;
+  stone: number;
+  steel: number;
+}
+
+export const UnitCosts: Record<UnitType, UnitCost> = {
+  [UnitType.Infantry]: { gold: 1, wood: 1, stone: 2, steel: 3 },
+  [UnitType.Cavalry]: { gold: 1, wood: 1, stone: 2, steel: 3 },
+  [UnitType.Archer]: { gold: 1, wood: 1, stone: 2, steel: 3 },
+};
+
 export class CombatUnit {
   unitType: UnitType;
   attack: number;
