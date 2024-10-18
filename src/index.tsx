@@ -11,10 +11,13 @@ import HomePage from "./pages/HomePage";
 import reportWebVitals from "./reportWebVitals";
 import NavBar from "./components/NavBar";
 import store from "./store";
+import { loadResources } from "./store/resourceSlice";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+store.dispatch(loadResources());
 
 root.render(
   <React.StrictMode>
