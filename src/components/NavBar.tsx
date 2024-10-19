@@ -35,9 +35,28 @@ const NavBar: React.FC = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/contact">
-                Contact
-              </Link>
+              <div className="nav-link">
+                Gold:
+                {resources.gold}
+              </div>
+            </li>
+            <li className="nav-item">
+              <div className="nav-link">
+                Wood:
+                {resources.wood}
+              </div>
+            </li>
+            <li className="nav-item">
+              <div className="nav-link">
+                Stone:
+                {resources.stone}
+              </div>
+            </li>
+            <li className="nav-item">
+              <div className="nav-link">
+                Steel:
+                {resources.steel}
+              </div>
             </li>
           </ul>
         </div>
