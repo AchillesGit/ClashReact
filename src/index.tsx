@@ -7,10 +7,11 @@ import { Provider } from "react-redux";
 import "./index.css";
 import "./styles/global.css";
 
-import HomePage from "./pages/Home";
+import VillagePage from "./pages/VillagePage";
 import reportWebVitals from "./reportWebVitals";
 import NavBar from "./components/NavBar";
 import store from "./store/store";
+import ArmyPage from "./pages/ArmyPage";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -22,7 +23,8 @@ root.render(
       <Router>
         <NavBar />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<VillagePage />} />
+          <Route path="/army" element={<ArmyPage />} />
         </Routes>
       </Router>
     </Provider>

@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../hooks/hooks";
 
 const NavBar: React.FC = () => {
+  const resources = useAppSelector((state) => state.resources);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -23,12 +26,12 @@ const NavBar: React.FC = () => {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link className="nav-link" to="/">
-                Home
+                Dorf
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/about">
-                About
+              <Link className="nav-link" to="/army">
+                Armee
               </Link>
             </li>
             <li className="nav-item">
