@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ResourceType, ResourceState } from "../models/resources";
+import { ResourceType, ResourceState } from "../models/resources.model";
 import { ResourceService } from "../services/resourceService";
 
 const resourceService = new ResourceService();
@@ -15,12 +15,14 @@ const resourceSlice = createSlice({
       action: PayloadAction<{ type: ResourceType; amount: number }>
     ) => {
       state[action.payload.type] += action.payload.amount;
+      resourceService.saveResources(state);
     },
     decrementResource: (
       state,
       action: PayloadAction<{ type: ResourceType; amount: number }>
     ) => {
       state[action.payload.type] -= action.payload.amount;
+      resourceService.saveResources(state);
     },
   },
 });

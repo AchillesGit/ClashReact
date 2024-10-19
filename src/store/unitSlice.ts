@@ -16,6 +16,7 @@ const unitSlice = createSlice({
   reducers: {
     addUnit: (state, action: PayloadAction<ICombatUnit>) => {
       state.units.push(action.payload);
+      unitService.saveUnits(state.units);
     },
     removeUnit: (state, action: PayloadAction<number>) => {
       state.units.splice(action.payload, 1);

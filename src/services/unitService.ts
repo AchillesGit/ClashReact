@@ -24,4 +24,8 @@ export class UnitService {
       console.error("Failed to save units to local storage:", error);
     }
   }
+
+  displayUnitDetails(unit: ICombatUnit): string {
+    return `Name: ${unit.name}, Type: ${unit.unitType}, Attack: ${unit.attack}, Defense: ${unit.defense}, Health: ${unit.health}`;
+  }
 }

@@ -1,3 +1,5 @@
+import { ResourceType } from "./resources.model";
+
 export interface ICombatUnit {
   unitType: UnitType;
   attack: number;
@@ -17,19 +19,27 @@ export enum UnitType {
   Archer = "Archer",
 }
 
-interface UnitCost {
-  gold: number;
-  wood: number;
-  stone: number;
-  steel: number;
-}
-
-export const UnitCosts: Record<UnitType, UnitCost> = {
-  [UnitType.Infantry]: { gold: 1, wood: 1, stone: 2, steel: 3 },
-  [UnitType.Cavalry]: { gold: 1, wood: 1, stone: 2, steel: 3 },
-  [UnitType.Archer]: { gold: 1, wood: 1, stone: 2, steel: 3 },
+type UnitCosts = {
+  [key in ResourceType]: number;
 };
 
-export function displayUnitDetails(unit: ICombatUnit): string {
-  return `Name: ${unit.name}, Type: ${unit.unitType}, Attack: ${unit.attack}, Defense: ${unit.defense}, Health: ${unit.health}`;
-}
+export const UnitCosts: Record<UnitType, UnitCosts> = {
+  [UnitType.Infantry]: {
+    [ResourceType.Gold]: 1,
+    [ResourceType.Wood]: 1,
+    [ResourceType.Stone]: 2,
+    [ResourceType.Steel]: 3,
+  },
+  [UnitType.Cavalry]: {
+    [ResourceType.Gold]: 1,
+    [ResourceType.Wood]: 1,
+    [ResourceType.Stone]: 2,
+    [ResourceType.Steel]: 3,
+  },
+  [UnitType.Archer]: {
+    [ResourceType.Gold]: 1,
+    [ResourceType.Wood]: 1,
+    [ResourceType.Stone]: 2,
+    [ResourceType.Steel]: 3,
+  },
+};

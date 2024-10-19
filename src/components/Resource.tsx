@@ -1,5 +1,5 @@
 import React from "react";
-import { ResourceType } from "../models/resources";
+import { ResourceType } from "../models/resources.model";
 import { incrementResource, decrementResource } from "../store/resourceSlice";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 

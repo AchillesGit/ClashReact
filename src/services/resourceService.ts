@@ -1,4 +1,4 @@
-import { ResourceState } from "../models/resources";
+import { ResourceState } from "../models/resources.model";
 
 export class ResourceService {
   loadResources(): ResourceState {
