@@ -28,5 +28,7 @@ const resourceSlice = createSlice({
 });
 
 export const { incrementResource, decrementResource } = resourceSlice.actions;
+export const selectResources = (state: { resources: ResourceState }) =>
+  state.resources;
 
 export default resourceSlice.reducer;

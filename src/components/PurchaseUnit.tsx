@@ -1,12 +1,12 @@
 import React from "react";
 import { UnitType, ICombatUnit } from "../models/combatUnit.model";
 import { ResourceType } from "../models/resources.model";
-import { decrementResource } from "../store/resourceSlice";
+import { decrementResource, selectResources } from "../store/resourceSlice";
 import { addUnit } from "../store/unitSlice";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 
 const PurchaseUnitComponent: React.FC = () => {
-  const resources = useAppSelector((state) => state.resources);
+  const resources = useAppSelector(selectResources);
   const dispatch = useAppDispatch();
 
   const unitCosts = {

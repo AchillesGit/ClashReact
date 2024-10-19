@@ -12,6 +12,7 @@ import reportWebVitals from "./reportWebVitals";
 import NavBar from "./components/NavBar";
 import store from "./store/store";
 import ArmyPage from "./pages/ArmyPage";
+import BattlePage from "./pages/BattlePage";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -25,6 +26,7 @@ root.render(
         <Routes>
           <Route path="/" element={<VillagePage />} />
           <Route path="/army" element={<ArmyPage />} />
+          <Route path="/battle" element={<BattlePage />} />
         </Routes>
       </Router>
     </Provider>

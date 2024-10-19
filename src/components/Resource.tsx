@@ -1,10 +1,14 @@
 import React from "react";
 import { ResourceType } from "../models/resources.model";
-import { incrementResource, decrementResource } from "../store/resourceSlice";
+import {
+  incrementResource,
+  decrementResource,
+  selectResources,
+} from "../store/resourceSlice";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 
 const ResourceComponent: React.FC = () => {
-  const resources = useAppSelector((state) => state.resources);
+  const resources = useAppSelector(selectResources);
   const dispatch = useAppDispatch();
 
   return (

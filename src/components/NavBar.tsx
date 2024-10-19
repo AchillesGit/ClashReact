@@ -35,6 +35,11 @@ const NavBar: React.FC = () => {
               </Link>
             </li>
             <li className="nav-item">
+              <Link className="nav-link" to="/battle">
+                Battle
+              </Link>
+            </li>
+            <li className="nav-item">
               <div className="nav-link">
                 Gold:
                 {resources.gold}

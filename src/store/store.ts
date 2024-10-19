@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import unitSlice from "./unitSlice";
 import resourceSlice from "./resourceSlice";
+import battleSlice from "./battleSlice";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const store = configureStore({
   reducer: {
     units: unitSlice,
     resources: resourceSlice,
+    battle: battleSlice,
   },
 });
 
