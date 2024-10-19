@@ -1,12 +1,11 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../store";
 import { ResourceType } from "../models/resources";
 import { incrementResource, decrementResource } from "../store/resourceSlice";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 
 const ResourceComponent: React.FC = () => {
-  const resources = useSelector((state: RootState) => state.resources);
-  const dispatch = useDispatch<AppDispatch>();
+  const resources = useAppSelector((state) => state.resources);
+  const dispatch = useAppDispatch();
 
   return (
     <div>
@@ -15,14 +14,18 @@ const ResourceComponent: React.FC = () => {
         <p>Gold: {resources[ResourceType.Gold]}</p>
         <button
           onClick={() =>
-            dispatch(incrementResource({ type: ResourceType.Gold, amount: 10 }))
+            dispatch(
+              incrementResource({ type: ResourceType.Gold, amount: 1111110 })
+            )
           }
         >
           +10 Gold
         </button>
         <button
           onClick={() =>
-            dispatch(decrementResource({ type: ResourceType.Gold, amount: 10 }))
+            dispatch(
+              decrementResource({ type: ResourceType.Gold, amount: 11111110 })
+            )
           }
         >
           -10 Gold
@@ -32,14 +35,18 @@ const ResourceComponent: React.FC = () => {
         <p>Wood: {resources[ResourceType.Wood]}</p>
         <button
           onClick={() =>
-            dispatch(incrementResource({ type: ResourceType.Wood, amount: 10 }))
+            dispatch(
+              incrementResource({ type: ResourceType.Wood, amount: 11111110 })
+            )
           }
         >
           +10 Wood
         </button>
         <button
           onClick={() =>
-            dispatch(decrementResource({ type: ResourceType.Wood, amount: 10 }))
+            dispatch(
+              decrementResource({ type: ResourceType.Wood, amount: 11111110 })
+            )
           }
         >
           -10 Wood
@@ -50,7 +57,7 @@ const ResourceComponent: React.FC = () => {
         <button
           onClick={() =>
             dispatch(
-              incrementResource({ type: ResourceType.Stone, amount: 10 })
+              incrementResource({ type: ResourceType.Stone, amount: 11111110 })
             )
           }
         >
@@ -59,7 +66,7 @@ const ResourceComponent: React.FC = () => {
         <button
           onClick={() =>
             dispatch(
-              decrementResource({ type: ResourceType.Stone, amount: 10 })
+              decrementResource({ type: ResourceType.Stone, amount: 1111110 })
             )
           }
         >
@@ -71,7 +78,7 @@ const ResourceComponent: React.FC = () => {
         <button
           onClick={() =>
             dispatch(
-              incrementResource({ type: ResourceType.Steel, amount: 10 })
+              incrementResource({ type: ResourceType.Steel, amount: 11111110 })
             )
           }
         >
@@ -80,7 +87,7 @@ const ResourceComponent: React.FC = () => {
         <button
           onClick={() =>
             dispatch(
-              decrementResource({ type: ResourceType.Steel, amount: 10 })
+              decrementResource({ type: ResourceType.Steel, amount: 11111110 })
             )
           }
         >

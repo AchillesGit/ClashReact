@@ -1,14 +1,13 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../store";
-import { UnitType, CombatUnit } from "../models/combatUnit";
+import { UnitType, ICombatUnit } from "../models/combatUnit.model";
 import { ResourceType } from "../models/resources";
 import { decrementResource } from "../store/resourceSlice";
 import { addUnit } from "../store/unitSlice";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 
 const PurchaseUnitComponent: React.FC = () => {
-  const resources = useSelector((state: RootState) => state.resources);
-  const dispatch = useDispatch<AppDispatch>();
+  const resources = useAppSelector((state) => state.resources);
+  const dispatch = useAppDispatch();
 
   const unitCosts = {
     Infantry: { gold: 100, wood: 50, stone: 30, steel: 20 },
@@ -41,7 +40,13 @@ const PurchaseUnitComponent: React.FC = () => {
       dispatch(
         decrementResource({ type: ResourceType.Steel, amount: cost.steel })
       );
-      const newUnit = new CombatUnit(unitType, 10, 5, 100, `New ${unitType}`);
+      const newUnit = {
+        unitType: unitType,
+        attack: 10,
+        defense: 5,
+        health: 100,
+        name: `New ${Math.random().toString(36).substr(2, 9)}`,
+      } as ICombatUnit;
       dispatch(addUnit(newUnit));
       console.log(`Purchased ${unitType}`);
     } else {

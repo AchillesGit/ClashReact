@@ -7,17 +7,14 @@ import { Provider } from "react-redux";
 import "./index.css";
 import "./styles/global.css";
 
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/Home";
 import reportWebVitals from "./reportWebVitals";
 import NavBar from "./components/NavBar";
-import store from "./store";
-import { loadResources } from "./store/resourceSlice";
+import store from "./store/store";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
-
-store.dispatch(loadResources());
 
 root.render(
   <React.StrictMode>

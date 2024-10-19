@@ -1,64 +1,30 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CombatUnit } from "../models/combatUnit";
+import type { RootState } from "../store/store";
+import { CombatUnitsState, ICombatUnit } from "../models/combatUnit.model";
 import { UnitService } from "../services/unitService";
-
-interface UnitState {
-  units: CombatUnit[];
-  status: "idle" | "loading" | "succeeded" | "failed";
-  error: string | null;
-}
-
-const initialState: UnitState = {
-  units: [],
-  status: "idle",
-  error: null,
-};
 
 const unitService = new UnitService();
 
-export const loadUnits = () => (dispatch: any) => {
-  dispatch(loadUnitsPending());
-  try {
-    unitService.loadUnits();
-    const units = unitService.getUnits();
-    dispatch(loadUnitsFulfilled(units));
-  } catch (error: any) {
-    dispatch(loadUnitsRejected(error.message));
-  }
-};
-
-export const addUnit = (unit: CombatUnit) => (dispatch: any) => {
-  unitService.addUnit(unit);
-  const units = unitService.getUnits();
-  dispatch(addUnitFulfilled(units));
+// Define the initial state using that type
+const initialState: CombatUnitsState = {
+  units: unitService.loadUnits(),
 };
 
 const unitSlice = createSlice({
   name: "units",
   initialState,
   reducers: {
-    loadUnitsPending: (state) => {
-      state.status = "loading";
+    addUnit: (state, action: PayloadAction<ICombatUnit>) => {
+      state.units.push(action.payload);
     },
-    loadUnitsFulfilled: (state, action: PayloadAction<CombatUnit[]>) => {
-      state.status = "succeeded";
-      state.units = action.payload;
-    },
-    loadUnitsRejected: (state, action: PayloadAction<string>) => {
-      state.status = "failed";
-      state.error = action.payload;
-    },
-    addUnitFulfilled: (state, action: PayloadAction<CombatUnit[]>) => {
-      state.units = action.payload;
+    removeUnit: (state, action: PayloadAction<number>) => {
+      state.units.splice(action.payload, 1);
     },
   },
 });
 
-export const {
-  loadUnitsPending,
-  loadUnitsFulfilled,
-  loadUnitsRejected,
-  addUnitFulfilled,
-} = unitSlice.actions;
+export const { addUnit, removeUnit } = unitSlice.actions;
 
+// Other code such as selectors can use the imported `RootState` type
+export const selectUnits = (state: RootState) => state.units.units;
 export default unitSlice.reducer;
